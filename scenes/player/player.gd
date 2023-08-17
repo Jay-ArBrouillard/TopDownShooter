@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal laser_used(laser_position: Vector2)
+signal laser_used(laser_position: Vector2, direction: Vector2)
 signal grenade_used(grenade_position: Vector2, direction: Vector2)
 
 const speed: int = 500
@@ -18,6 +18,8 @@ func _process(_delta):
 	# Rotate and look at the mouse
 	look_at(get_global_mouse_position())	
 
+	var player_direction = (get_global_mouse_position() - position).normalized()
+
 	# Shooting
 	if Input.is_action_pressed("primary action") and can_laser:
 		# randomly select a marker2D from LaserStartPositions
@@ -25,15 +27,13 @@ func _process(_delta):
 		var selected_laser = laser_markers[randi_range(0, laser_markers.size()-1)]
 		can_laser = false
 		$LaserTimer.start()
-		# emit the laser position selected
-		laser_used.emit(selected_laser.global_position)
+		laser_used.emit(selected_laser.global_position, player_direction)
 
 	# Grenade
 	if Input.is_action_pressed("secondary action") and can_grenade:
 		can_grenade = false
 		$GrenadeTimer.start()
 		var grenade_position = $GrenadePosition.global_position
-		var player_direction = (get_global_mouse_position() - position).normalized()
 		grenade_used.emit(grenade_position, player_direction)
 
 
