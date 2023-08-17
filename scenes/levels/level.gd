@@ -1,6 +1,8 @@
 extends Node2D
 
 var test_array: Array[String] = ["Test", "bayar", "layar"]
+var laser_scene: PackedScene = preload("res://scenes/projectiles/laser.tscn")
+var grenade_scene: PackedScene = preload("res://scenes/projectiles/grenade.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,19 +14,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-#	$Player.rotation_degrees += 500 * delta
-#
-#	if Input.is_action_pressed("left"):
-#		$Player.position.x -= 300 * delta
-#
-#	if Input.is_action_pressed("right"):
-#		$Playear.position.x += 300 * delta
-#
-#	if Input.is_action_pressed("up"):
-#		$Player.position.y -= 300 * delta
-#
-#	if Input.is_action_pressed("down"):
-#		$Player.position.y += 300 * delta
 	pass
 	
 func test_function():
@@ -33,8 +22,14 @@ func test_function():
 func _on_gate_player_entered_gate(body):
 	print("entered gate: ", body)
 
-func _on_player_laser_used():
-	print("laser from level")
+func _on_player_laser_used(laser_position: Vector2):
+	print("laser from level: ", laser_position)
+	var laser: Area2D = laser_scene.instantiate()
+	laser.position = laser_position
+	$Projectiles.add_child(laser)
 
-func _on_player_grenade_used():
-	print("grenade from level")
+func _on_player_grenade_used(grenade_position: Vector2):
+	print("grenade from level: ", grenade_position)
+	var grenade: RigidBody2D = grenade_scene.instantiate()
+	grenade.position = grenade_position
+	$Projectiles.add_child(grenade)
