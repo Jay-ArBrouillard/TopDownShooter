@@ -1,15 +1,11 @@
 extends Node2D
 
-var test_array: Array[String] = ["Test", "bayar", "layar"]
+#var test_array: Array[String] = ["Test", "bayar", "layar"]
 var laser_scene: PackedScene = preload("res://scenes/projectiles/laser.tscn")
 var grenade_scene: PackedScene = preload("res://scenes/projectiles/grenade.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	$Player.rotation_degrees = 0
-#
-#	for i in test_array:
-#		print(i)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,8 +24,9 @@ func _on_player_laser_used(laser_position: Vector2):
 	laser.position = laser_position
 	$Projectiles.add_child(laser)
 
-func _on_player_grenade_used(grenade_position: Vector2):
+func _on_player_grenade_used(grenade_position: Vector2, direction: Vector2):
 	print("grenade from level: ", grenade_position)
-	var grenade: RigidBody2D = grenade_scene.instantiate()
+	var grenade = grenade_scene.instantiate() as RigidBody2D
 	grenade.position = grenade_position
+	grenade.linear_velocity = direction * grenade.speed
 	$Projectiles.add_child(grenade)

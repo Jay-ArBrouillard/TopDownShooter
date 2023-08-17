@@ -4,16 +4,18 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_yfs28"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sllny"]
-radius = 64.0
+radius = 72.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yfs28")
 
-[node name="Character" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
+[node name="PlayerImage" type="Sprite2D" parent="."]
+position = Vector2(32, 8)
+rotation = 1.5708
 texture = ExtResource("1_viuiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_sllny")
 
 [node name="LaserTimer" type="Timer" parent="."]
@@ -27,16 +29,16 @@ one_shot = true
 [node name="LaserStartPositions" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="LaserStartPositions"]
-position = Vector2(13, -130)
+position = Vector2(122, 19)
 
 [node name="Marker2D2" type="Marker2D" parent="LaserStartPositions"]
-position = Vector2(19, -134)
+position = Vector2(123, 26)
 
 [node name="Marker2D3" type="Marker2D" parent="LaserStartPositions"]
-position = Vector2(25, -131)
+position = Vector2(121, 33)
 
 [node name="GrenadePosition" type="Marker2D" parent="."]
-position = Vector2(16, -136)
+position = Vector2(136, 24)
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]
