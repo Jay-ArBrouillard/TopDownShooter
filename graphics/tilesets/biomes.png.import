@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvyym7yfv4fod"
-path="res://.godot/imported/empty_land.png-04fdeb57e14cd99e10b664ca4170dc53.ctex"
+uid="uid://boxthqjsckker"
+path="res://.godot/imported/biomes.png-f972a2eef43f126870570f0ad3c8e3b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/ground/empty_land.png"
-dest_files=["res://.godot/imported/empty_land.png-04fdeb57e14cd99e10b664ca4170dc53.ctex"]
+source_file="res://graphics/tilesets/biomes.png"
+dest_files=["res://.godot/imported/biomes.png-f972a2eef43f126870570f0ad3c8e3b1.ctex"]
 
 [params]
 
